@@ -1,0 +1,49 @@
+﻿@model PetKing.Models.Order
+
+<h2>Order Confirmation</h2>
+
+<h3>Thank you for your order!</h3>
+
+<p>Your order has been placed successfully. Here are the details:</p>
+
+<h4>Order Information</h4>
+<p><strong>Order Number:</strong> @Model.OrderID</p>
+<p><strong>Order Date:</strong> @Model.OrderDate.ToString("MM/dd/yyyy HH:mm")</p>
+<p><strong>Total Amount:</strong> @Model.TotalAmount.ToString("C")</p>
+
+<h4>Shipping Information</h4>
+<p><strong>Name:</strong> @Model.ShippingName</p>
+<p><strong>Address:</strong> @Model.ShippingAddress</p>
+<p><strong>City:</strong> @Model.ShippingCity</p>
+<p><strong>Postal Code:</strong> @Model.ShippingPostalCode</p>
+
+<h4>Order Items</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@((item.Quantity * item.Price).ToString("C"))</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right"><strong>Total:</strong></td>
+            <td><strong>@Model.TotalAmount.ToString("C")</strong></td>
+        </tr>
+    </tfoot>
+</table>
+
+<a asp-controller="Product" asp-action="Index" class="btn btn-primary">Continue Shopping</a>

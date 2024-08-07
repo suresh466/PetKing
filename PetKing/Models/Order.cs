@@ -14,5 +14,9 @@ namespace PetKing.Models
         public decimal TotalAmount { get; set; }
         public string Status { get; set; }
         public List<OrderItem> OrderItems { get; set; }
+        public string ShippingName { get; set; }
+        public string ShippingAddress { get; set; }
+        public string ShippingCity { get; set; }
+        public string ShippingPostalCode { get; set; }
     }
 }
