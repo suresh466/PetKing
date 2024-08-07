@@ -18,7 +18,7 @@ namespace PetKing
                 try
                 {
                     var context = services.GetRequiredService<PetKingContext>();
-                    DbInitializer.Initialize(context);
+                    DbInitializer.Initialize(context, services);
                 }
                 catch (Exception ex)
                 {

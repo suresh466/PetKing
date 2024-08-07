@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using PetKing.Models;
 
 namespace PetKing
 {
     public static class DbInitializer
     {
-        public static void Initialize(PetKingContext context)
+        public static void Initialize(PetKingContext context, IServiceProvider serviceProvider)
         {
             context.Database.EnsureCreated();
 
@@ -42,6 +44,28 @@ namespace PetKing
                 context.Products.Add(p);
             }
             context.SaveChanges();
+
+            // Create admin role and user
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            string[] roleNames = { "Admin", "Customer" };
+            foreach (var roleName in roleNames)
+            {
+                if (!roleManager.RoleExistsAsync(roleName).Result)
+                {
+                    roleManager.CreateAsync(new IdentityRole(roleName)).Wait();
+                }
+            }
+
+            var adminEmail = "admin@petking.com";
+            var adminUser = new IdentityUser { UserName = adminEmail, Email = adminEmail };
+            var result = userManager.CreateAsync(adminUser, "AdminPass123!").Result;
+
+            if (result.Succeeded)
+            {
+                userManager.AddToRoleAsync(adminUser, "Admin").Wait();
+            }
         }
     }
 }

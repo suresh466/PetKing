@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PetKing.Models;
 
 namespace PetKing
 {
-    public class PetKingContext : DbContext
+    public class PetKingContext : IdentityDbContext
     {
         public PetKingContext(DbContextOptions<PetKingContext> options)
             : base(options)
