@@ -2,7 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Pet King</h1>
+    <p class="lead">Find the best products for your furry friends!</p>
+    <hr class="my-4">
+    <p>Explore our wide range of pet supplies and accessories.</p>
+    <a class="btn btn-primary btn-lg" asp-controller="Product" asp-action="Index" role="button">Shop Now</a>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Featured Products</h2>
+        <p>Check out our top picks for your pets.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Special Offers</h2>
+        <p>Don't miss out on our current deals!</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Pet Care Tips</h2>
+        <p>Learn how to take better care of your pets.</p>
+    </div>
 </div>
