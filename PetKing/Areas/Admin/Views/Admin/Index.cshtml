@@ -2,24 +2,25 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<h2>Admin Dashboard</h2>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Products</h5>
-                <p class="card-text">Manage products in the store.</p>
-                <a asp-area="Admin" asp-controller="Admin" asp-action="Products" class="btn btn-primary">Go to Products</a>
+<div class="container">
+    <h2 class="mb-4">Admin Dashboard</h2>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card admin-panel">
+                <div class="card-body">
+                    <h3 class="card-title">Products</h3>
+                    <p class="card-text">Manage products in the store.</p>
+                    <a asp-area="Admin" asp-controller="Admin" asp-action="Products" class="btn btn-primary">Go to Products</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Orders</h5>
-                <p class="card-text">View and manage customer orders.</p>
-                <a asp-area="Admin" asp-controller="Admin" asp-action="Orders" class="btn btn-primary">Go to Orders</a>
+        <div class="col-md-6 mb-4">
+            <div class="card admin-panel">
+                <div class="card-body">
+                    <h3 class="card-title">Orders</h3>
+                    <p class="card-text">View and manage customer orders.</p>
+                    <a asp-area="Admin" asp-controller="Admin" asp-action="Orders" class="btn btn-primary">Go to Orders</a>
+                </div>
             </div>
         </div>
     </div>
