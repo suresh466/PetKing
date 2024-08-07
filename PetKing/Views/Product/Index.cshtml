@@ -1,0 +1,41 @@
+﻿@model List<PetKing.Models.Product>
+
+<h2>Product Catalog</h2>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <form asp-action="Index" method="get">
+            <select name="categoryId" class="form-control" onchange="this.form.submit()">
+                <option value="">All Categories</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    if (ViewBag.SelectedCategoryId == category.CategoryID)
+                    {
+                        <option value="@category.CategoryID" selected>@category.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@category.CategoryID">@category.Name</option>
+                    }
+                }
+            </select>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@product.ImageURL" class="card-img-top" alt="@product.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text"><strong>Price: </strong>@product.Price.ToString("C")</p>
+                    <a asp-action="Details" asp-route-id="@product.ProductID" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
