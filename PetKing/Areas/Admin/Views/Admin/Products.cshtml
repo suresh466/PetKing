@@ -1,0 +1,34 @@
+﻿@model List<PetKing.Models.Product>
+
+<h2>Product Management</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductID</td>
+                <td>@product.Name</td>
+                <td>@product.Category.Name</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>
+                    <a asp-area="Admin" asp-controller="Admin" asp-action="EditProduct" asp-route-id="@product.ProductID" class="btn btn-sm btn-primary">Edit</a>
+                    <form asp-area="Admin" asp-controller="Admin" asp-action="DeleteProduct" asp-route-id="@product.ProductID" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-area="Admin" asp-controller="Admin" asp-action="AddProduct" class="btn btn-success">Add New Product</a>
