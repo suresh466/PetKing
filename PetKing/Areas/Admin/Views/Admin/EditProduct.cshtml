@@ -1,38 +1,51 @@
 ﻿@model PetKing.Models.Product
 
-<h2>Edit Product</h2>
-
-<form asp-action="EditProduct" method="post">
-    <input type="hidden" asp-for="ProductID" />
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Price"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="CategoryID">Category</label>
-        <select asp-for="CategoryID" class="form-control">
-            @foreach (var category in ViewBag.Categories)
-            {
-                <option value="@category.CategoryID">@category.Name</option>
-            }
-        </select>
-        <span asp-validation-for="CategoryID" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ImageURL"></label>
-        <input asp-for="ImageURL" class="form-control" />
-        <span asp-validation-for="ImageURL" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Update Product</button>
-</form>
+<div class="container mt-4">
+    <h2 class="mb-4">Edit Product</h2>
+    <form asp-action="EditProduct" method="post">
+        <input type="hidden" asp-for="ProductID" />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="CategoryID" class="control-label">Category</label>
+                    <select asp-for="CategoryID" class="form-control">
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            <option value="@category.CategoryID">@category.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageURL" class="control-label">Image URL</label>
+                    <input asp-for="ImageURL" class="form-control" />
+                    <span asp-validation-for="ImageURL" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <img src="@Model.ImageURL" alt="@Model.Name" style="max-width: 200px; max-height: 200px;" class="img-thumbnail" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Update Product</button>
+            <a asp-action="Products" class="btn btn-secondary"><i class="fas fa-arrow-left mr-2"></i>Back to List</a>
+        </div>
+    </form>
+</div>

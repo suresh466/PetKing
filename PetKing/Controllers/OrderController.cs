@@ -52,20 +52,33 @@ namespace PetKing.Controllers
                     .Include(o => o.OrderItems)
                     .FirstOrDefault(o => o.UserID == userId && o.Status == "IN_CART");
 
-                if (order != null)
+                if (order == null || !order.OrderItems.Any())
                 {
-                    order.Status = "PLACED";
-                    order.OrderDate = DateTime.Now;
-                    // Update order with shipping details
-                    order.ShippingName = checkoutViewModel.ShippingName;
-                    order.ShippingAddress = checkoutViewModel.ShippingAddress;
-                    order.ShippingCity = checkoutViewModel.ShippingCity;
-                    order.ShippingPostalCode = checkoutViewModel.ShippingPostalCode;
-
-                    _context.SaveChanges();
-
-                    return RedirectToAction("OrderConfirmation", new { orderId = order.OrderID });
+                    ModelState.AddModelError("", "Your cart is empty");
+                    return View("Checkout", checkoutViewModel);
                 }
+
+                // Validate that all products in the order still exist and have sufficient stock
+                foreach (var item in order.OrderItems)
+                {
+                    var product = _context.Products.Find(item.ProductID);
+                    if (product == null)
+                    {
+                        ModelState.AddModelError("", $"Product {item.Product.Name} is no longer available");
+                        return View("Checkout", checkoutViewModel);
+                    }
+                    // Add stock check here if you implement inventory management
+                }
+
+                order.Status = "PLACED";
+                order.OrderDate = DateTime.Now;
+                order.ShippingName = checkoutViewModel.ShippingName;
+                order.ShippingAddress = checkoutViewModel.ShippingAddress;
+                order.ShippingCity = checkoutViewModel.ShippingCity;
+                order.ShippingPostalCode = checkoutViewModel.ShippingPostalCode;
+
+                _context.SaveChanges();
+                return RedirectToAction("OrderConfirmation", new { orderId = order.OrderID });
             }
 
             // If we got this far, something failed; redisplay form

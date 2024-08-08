@@ -25,6 +25,11 @@ namespace PetKing
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // enable client side validation
+            services.AddMvc().AddViewOptions(options =>
+            {
+                options.HtmlHelperOptions.ClientValidationEnabled = true;
+            });
             // Existing DbContext configuration
             services.AddDbContext<PetKingContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
