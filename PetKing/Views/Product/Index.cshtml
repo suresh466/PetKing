@@ -1,28 +1,30 @@
 ﻿@model List<PetKing.Models.Product>
-
 <div class="container">
     <h2 class="mb-4">Product Catalog</h2>
-
-    <div class="row mb-3">
+    <div class="row mb-4">
         <div class="col-md-4">
-            <form asp-action="Index" method="get" class="form-inline">
-                <select name="categoryId" class="form-control mr-2" onchange="this.form.submit()">
-                    <option value="">All Categories</option>
-                    @foreach (var category in ViewBag.Categories)
-                    {
-                        <option value="@category.CategoryID" selected="@(ViewBag.SelectedCategoryId == category.CategoryID)">@category.Name</option>
-                    }
-                </select>
+            <form asp-action="Index" method="get">
+                <div class="input-group">
+                    <select name="categoryId" class="form-control" onchange="this.form.submit()">
+                        <option value="">All Categories</option>
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            <option value="@category.CategoryID" selected="@(ViewBag.SelectedCategoryId == category.CategoryID)">@category.Name</option>
+                        }
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Filter</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-
     <div class="row">
         @foreach (var product in Model)
         {
             <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <img src="@product.ImageURL" class="card-img-top" alt="@product.Name">
+                <div class="card product-card shadow-sm">
+                    <img src="/images/@product.ImageURL" class="card-img-top" alt="@product.Name">
                     <div class="card-body">
                         <h5 class="card-title">@product.Name</h5>
                         <p class="card-text">@product.Description</p>
@@ -33,7 +35,6 @@
             </div>
         }
     </div>
-
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             @for (int i = 1; i <= ViewBag.TotalPages; i++)
