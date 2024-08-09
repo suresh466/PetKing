@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿        document.getElementById('decrease-quantity').addEventListener('click', function () {
+            var input = document.getElementById('quantity');
+        var value = parseInt(input.value, 10);
+            if (value > 1) input.value = value - 1;
+        });
 
-// Write your JavaScript code.
+        document.getElementById('increase-quantity').addEventListener('click', function () {
+            var input = document.getElementById('quantity');
+        var value = parseInt(input.value, 10);
+        input.value = value + 1;
+        });

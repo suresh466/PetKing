@@ -22,17 +22,76 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    padding-top: 0; /* Remove top padding as the header is no longer sticky */
+    padding-top: 0;
 }
 
 .container {
-    padding-top: var(--space-lg);
-    padding-bottom: var(--space-lg);
+    max-width: 1200px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--primary-color);
     margin-bottom: var(--space-md);
+}
+
+/ Improved Button styles /
+
+.btn {
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: var(--space-sm) var(--space-md);
+    margin: var(--space-xs);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+    .btn-primary:hover, .btn-primary:focus {
+        background-color: var(--primary-hover);
+        border-color: var(--primary-hover);
+        color: white;
+    }
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+
+    .btn-secondary:hover, .btn-secondary:focus {
+        background-color: var(--secondary-hover);
+        border-color: var(--secondary-hover);
+        color: white;
+    }
+
+.btn-outline-secondary {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+    .btn-outline-secondary:hover, .btn-outline-secondary:focus {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+.btn-danger {
+    color: white;
+}
+
+    .btn-danger:hover, .btn-danger:focus {
+        color: white;
+        opacity: 0.9;
+    }
+
+
+
+.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Improved Navbar styles */
@@ -60,20 +119,12 @@ h1, h2, h3, h4, h5, h6 {
         color: var(--primary-color) !important;
     }
 
-/* Button styles */
-.btn {
-    font-weight: 500;
-    transition: all 0.3s ease;
-    padding: var(--space-sm) var(--space-md);
-    margin: var(--space-xs);
-}
-
 /* Card styles */
 .card {
     transition: transform 0.3s ease-in-out;
     margin-bottom: var(--space-md);
     border: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px 6px rgba(0,0,0,0.1);
 }
 
     .card:hover {
@@ -87,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Footer styles */
 .footer {
     background-color: var(--footer-color);
-    color: #fff;
+    color: gray;
     padding: var(--space-lg) 0;
     margin-top: var(--space-xxl);
 }
@@ -222,4 +273,36 @@ h1, h2, h3, h4, h5, h6 {
 .cart-summary {
     background-color: #f8f9fa;
     border-left: 4px solid var(--primary-color);
+}
+
+
+/* Product details page specific styles */
+.product-details .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.product-details .input-group-text {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border-color: var(--secondary-color);
+}
+
+.product-details .btn-primary {
+    padding: 0.5rem 1rem;
+}
+
+.product-details .btn-outline-secondary {
+    padding: 0.5rem 1rem;
+}
+
+/* Order confirmation page styles */
+@media (max-width: 767.98px) {
+    .order-confirmation .table {
+        font-size: 0.9rem;
+    }
+
+        .order-confirmation .table th,
+        .order-confirmation .table td {
+            padding: 0.5rem;
+        }
 }
